@@ -5,6 +5,23 @@ import openevents.utils.Person;
 import org.hibernate.*;
 
 public class TestDb {
+    public static void createAttendees(){
+        Session session = HibernateHelper.getSessionFactory().getCurrentSession();
+
+        Transaction tx = session.getTransaction();
+        tx.begin();
+       Attendee attendee = new Attendee();
+       attendee.setAttendee(new Person());
+
+       attendee.getAttendee().setName("Bill");
+       attendee.getAttendee().setEmail("bill@email.com");
+       attendee.getAttendee().setPhoneNumber(734049589);
+       attendee.setRSVP(true);
+
+       session.save(attendee);
+
+        tx.commit();
+    }
     public static void createOrganizer(){
         Session session = HibernateHelper.getSessionFactory().getCurrentSession();
 
@@ -55,8 +72,9 @@ public class TestDb {
    }
     public static void main(String args[]){
       //adminTests();
-        createOrganizer();
-        eventTest();
+        //createOrganizer();
+        //eventTest();
+        createAttendees();
 
 
     }
