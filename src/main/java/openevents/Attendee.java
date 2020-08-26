@@ -2,10 +2,15 @@ package openevents;
 
 import openevents.utils.BaseUserEntity;
 import openevents.utils.Person;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "attendees")
 public class Attendee extends BaseUserEntity {
 
@@ -13,7 +18,10 @@ public class Attendee extends BaseUserEntity {
     Person attendee;
 
     @Column(name = "rsvp",nullable = false)
-    private boolean RSVP;
+    private Boolean RSVP;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Event event;
 
     public Person getAttendee() {
         return attendee;
@@ -27,7 +35,7 @@ public class Attendee extends BaseUserEntity {
         return RSVP;
     }
 
-    public void setRSVP(boolean RSVP) {
+    public void setRSVP(Boolean RSVP) {
         this.RSVP = RSVP;
     }
 
