@@ -28,6 +28,9 @@ public class Event {
     @OneToMany(mappedBy = "event",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Attendee> attendees = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "events",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Attendee> allAtendees = new HashSet<>();
+
     @Column
     private Boolean approved;
 
@@ -71,5 +74,9 @@ public class Event {
         this.approved = approved;
     }
 
+    public void addAttendee(Attendee attendee){
+        attendee.setEvent(this);
+       this.attendees.add(attendee);
+    }
 
 }
