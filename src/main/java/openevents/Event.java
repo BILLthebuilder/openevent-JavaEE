@@ -5,7 +5,9 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @DynamicInsert
@@ -20,10 +22,10 @@ public class Event {
     @Column
     private String address;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Organizer organizer;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(mappedBy = "event",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Attendee> attendees = new ArrayList<>();
 
     @Column
