@@ -1,0 +1,10 @@
+.bg-1{
+    background-image: url("../assets/seyedeh-hamideh-kazemi-PFUqfNsorJM-unsplash.jpg");
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+}
+
+.card{
+    width: 300px;
+}
