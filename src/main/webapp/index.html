@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenEvents</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/custom.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div id="logo">
-            <h1>LOGO</h1>
-        </div>
-        <nav>
-            <ul>
+        <nav class="blue darken-3">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo">LOGO</a>
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                </ul>
+            </div>
+        </nav>
+            <ul id="slide-out" class="sidenav">
                 <li><a href="#">About</a></li>
                 <li><a href="#">Events</a></li>
                 <li><a href="#">Sign Up</a></li>
             </ul>
-        </nav>
-    </header>
     <section id="landing">
-        <div class="intro-text">
-            <h1>Explore all your Events here</h1>
-        </div>
-        <div class="event-tags">
-            <ul>
-                <li><a href="#">tag1</a></li>
-                <li><a href="#">tag2</a></li>
-                <li><a href="#">tag3</a></li>
-                <li><a href="#">tag4</a></li>
-            </ul>
+        <div class="carousel carousel-slider center">
+            <div class="carousel-fixed-item center">
+                <a class="btn waves-effect blue darken-2 darken-text-2" href="#">More Info</a>
+            </div>
+            <div class="carousel-item blue white-text bg-1 darken-text-3" href="#">
+                <h1>Welcome to Open Events</h1>
+                <h4 class="black-text">Your home for all kinds of events</h4>
+            </div>
+            <div class="carousel-item black-text bg-1 darken-text-3" href="#">
+                <h1>Welcome to Open Events</h1>
+                <h4 class="black-text">Your home for all kinds of events</h4>
+            </div>
+            <div class="carousel-item black-text bg-1 darken-text-3" href="#">
+                <h1>Welcome to Open Events</h1>
+                <h4 class="black-text">Your home for all kinds of events</h4>
+            </div>
+            <div class="carousel-item black-text bg-1 darken-text-3" href="#">
+                <h1>Welcome to Open Events</h1>
+                <h4 class="black-text">Your home for all kinds of events</h4>
+            </div>
         </div>
         <section id="event-categories-container">
-            <h1>Some Popular Events</h1>
+            <div class="container">
+                <h6 class="grey-text chip-holder">event categories</h6>
+                <h4 class="events-below">Some awesome events to choose from</h4>
+                <!-- Load card content -->
+            </div>
         </section>
     </section>
     <!-- <div>
@@ -55,5 +73,7 @@
             <p>all rights reserved</p>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
