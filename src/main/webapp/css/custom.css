@@ -1,3 +1,13 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+.sticky {
+    flex: 1 0 auto;
+  }
+  
 .bg-1{
     background-image: url("../assets/seyedeh-hamideh-kazemi-PFUqfNsorJM-unsplash.jpg");
     background-repeat: no-repeat;
@@ -7,4 +17,28 @@
 
 .card{
     width: 300px;
+    margin: 1%;
+}
+.cards-container{
+    display: flex;
+    flex-direction: row ;
+    flex-wrap: wrap;
+}
+.cards-container-row{
+    margin-left: 2%;
+}
+.inputs-row{
+    display:flex;
+    flex-direction: column;
+    margin: 2%;
+    justify-content: center;
+}
+.inputs-row .input-field{
+width: 50%;
+align-self: center;
+}
+.form-btn{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
 }
