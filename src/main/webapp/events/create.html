@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <nav class="blue darken-3">
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo">LOGO</a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">About</a></li>
+                <li class="active"><a href="#">Events</a></li>
+                <li><a href="#">Sign Up</a></li>
+            </ul>
+        </div>
+    </nav>
+    <ul id="slide-out" class="sidenav">
+        <li><a href="../">About</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="#">Sign Up</a></li>
+    </ul>
+    <!-- <div class="row"> -->
+        <form class="col s12">
+            <div class="inputs-row">
+                <div class="input-field col s6">
+                    <input placeholder="Enter event address" id="event_address" type="text" class="validate">
+                    <label for="event_address">Address</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="event_approval" type="text" class="validate">
+                    <label for="event_approval">Approved</label>
+                </div>
+            </div>
+            <div class="form-btn">
+                <button class="btn waves-effect blue darken-2 waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    <!-- </div> -->
+    <div class="sticky"></div>
+    <footer class="page-footer blue darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Footer Content</h5>
+                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.
+                    </p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Sitemap</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="#">Link 1</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">Link 2</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">Link 3</a></li>
+                        <li><a class="grey-text text-lighten-3" href="#">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                &copy 2020 All rights reserved
+                <a class="grey-text text-lighten-4 right" href="#">More Links</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../index.js"></script>
+</body>
+</html>
