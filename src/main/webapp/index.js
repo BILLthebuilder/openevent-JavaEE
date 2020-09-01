@@ -1,13 +1,21 @@
 // Materialize stuff
 M.AutoInit();
+
+//sidenav
 const sidenav = document.querySelector('.sidenav');
 const sideNavInstance = M.Sidenav.init(sidenav, {});
 
+//carousel
 const carousel = document.querySelector('.carousel');
 const carouselInstance = M.Carousel.init(carousel, {
     fullWidth: true,
     indicators: true,
     duration: 200
+});
+
+var tooltip = document.querySelector('.tooltipped');
+var tooltipInstance = M.Tooltip.init(tooltip, {
+
 });
 
 // Custom Javascript
@@ -42,25 +50,22 @@ const carouselInstance = M.Carousel.init(carousel, {
             posts.forEach(post => {
                 const eventTitle = post.title;
                 const eventContent = post.body;
-                const card = `<div class="row">
-                    <div class="col s12 cards-container">
-                        <div class="card">
+                const card = `
+                   <div class="card">
                             <div class="card-image">
                                 <img src="./assets/seyedeh-hamideh-kazemi-PFUqfNsorJM-unsplash.jpg">
                                 <span class="card-title">${eventTitle}</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-teal"><i class="material-icons">add</i></a>
+                                <a class="btn-floating tooltipped halfway-fab waves-effect blue darken-2" data-position="right" data-tooltip="add event to collection"><i class="material-icons">add</i></a>
                             </div>
                             <div class="card-content">
                                 <p>${eventContent}</p>
                             </div>
                             <div class="card-action">
-                                <a href="#">This is a link</a>
+                                <a class="blue-text" href="#">More Info</a>
                             </div>
-                        </div>
-                    </div>
-                </div>`;
+                        </div>`;
             const renderCards = document.querySelector('.events-below');
-            renderCards.insertAdjacentHTML('afterend', card);
+            renderCards.insertAdjacentHTML('afterbegin', card);
             })
         });
 })();
