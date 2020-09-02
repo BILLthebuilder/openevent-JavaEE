@@ -4,10 +4,8 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.validation.constraints.NotNull;
+import java.util.*;
 
 @Entity
 @DynamicInsert
@@ -19,8 +17,35 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
     @Column
-    private String address;
+    private String title;
+
+    @NotNull
+    @Column(name = "organizer")
+    private String organizerName;
+
+    @Column(name = "tags")
+    private String eventTags;
+
+    @NotNull
+    @Column
+    private String location;
+
+    @NotNull
+    @Column(name = "start_date", columnDefinition = "DATETIME")
+    private Date eventStartDateAndTime;
+
+    @NotNull
+    @Column(name = "end_date", columnDefinition = "DATETIME")
+    private Date eventEndDateAndTime;
+
+    @Column(name = "type")
+    private String eventType;
+
+    @Column(name ="category")
+    private String eventCategory;
+
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Organizer organizer;
@@ -31,9 +56,6 @@ public class Event {
     @ManyToMany(mappedBy = "events",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Attendee> allAtendees = new HashSet<>();
 
-    @Column
-    private Boolean approved;
-
     public int getId() {
         return id;
     }
@@ -42,12 +64,68 @@ public class Event {
         this.id = id;
     }
 
-    public String getAddress() {
-        return address;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getOrganizerName() {
+        return organizerName;
+    }
+
+    public void setOrganizerName(String organizerName) {
+        this.organizerName = organizerName;
+    }
+
+    public String getEventTags() {
+        return eventTags;
+    }
+
+    public void setEventTags(String eventTags) {
+        this.eventTags = eventTags;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Date getEventStartDateAndTime() {
+        return eventStartDateAndTime;
+    }
+
+    public Date getEventEndDateAndTime() {
+        return eventEndDateAndTime;
+    }
+
+    public void setEventEndDateAndTime(Date eventEndDateAndTime) {
+        this.eventEndDateAndTime = eventEndDateAndTime;
+    }
+
+    public void setEventStartDateAndTime(Date eventStartDateAndTime) {
+        this.eventStartDateAndTime = eventStartDateAndTime;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public String getEventCategory() {
+        return eventCategory;
+    }
+
+    public void setEventCategory(String eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
     public Organizer getOrganizer() {
@@ -66,12 +144,12 @@ public class Event {
         this.attendees = attendees;
     }
 
-    public boolean isApproved() {
-        return approved;
+    public Set<Attendee> getAllAtendees() {
+        return allAtendees;
     }
 
-    public void setApproved(Boolean approved) {
-        this.approved = approved;
+    public void setAllAtendees(Set<Attendee> allAtendees) {
+        this.allAtendees = allAtendees;
     }
 
     public void addAttendee(Attendee attendee){
