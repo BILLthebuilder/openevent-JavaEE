@@ -2,6 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    font-family: 'Roboto', sans-serif;
   }
 
 .sticky {
@@ -41,4 +42,11 @@ align-self: center;
     display: flex;
     justify-content: center;
     margin-bottom: 2%;
+}
+
+.intro-row{
+    align-self: center;
+    margin: 2%;
+    font-weight: bold;
+    letter-spacing: .5;
 }
