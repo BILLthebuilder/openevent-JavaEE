@@ -1,3 +1,10 @@
+// Materialize stuff
+M.AutoInit();
+
+//sidenav
+const sidenav = document.querySelector('.sidenav');
+const sideNavInstance = M.Sidenav.init(sidenav, {});
+
 $(document).ready(function () {
     $('form').submit(function (event) {
         const formData = {
