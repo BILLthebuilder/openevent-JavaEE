@@ -4,8 +4,12 @@ import database.HibernateHelper;
 import openevents.utils.Person;
 import org.hibernate.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TestDb {
-    public static void main(String args[]){
+    public static void main(String args[]) throws ParseException {
         //adminTests();
         //createOrganizer();
         //savingAttendeeUsingEvent();
@@ -13,7 +17,7 @@ public class TestDb {
 
 
     }
-    public static void savingEventsUsingOrganizer(){
+    public static void savingEventsUsingOrganizer() throws ParseException {
         Session session = HibernateHelper.getSessionFactory().getCurrentSession();
 
         Transaction tx = session.getTransaction();
@@ -22,13 +26,22 @@ public class TestDb {
         organizer.setOrganizer(new Person());
         organizer.getOrganizer().setName("Bill");
         organizer.getOrganizer().setEmail("bill@email.com");
-        organizer.getOrganizer().setPhoneNumber(700000009);
+        organizer.getOrganizer().setPhoneNumber("0700000009");
 
 
         for (int idx = 0; idx<10; idx++) {
             Event event = new Event();
-            event.setAddress("Nairobi");
-            event.setApproved(true);
+            event.setLocation("Nairobi");
+            event.setOrganizerName("Bill");
+            event.setEventType("Tech Event");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String dateInString = "2020-09-07 10:20:00";
+            Date date = simpleDateFormat.parse(dateInString);
+            event.setEventStartDateAndTime(date);
+            event.setEventEndDateAndTime(date);
+            event.setEventCategory("something");
+            event.setEventTags("tech-sports-enjoy");
+            event.setTitle("Biggest Tech Event");
 
             organizer.addEvent(event);
         }
@@ -43,8 +56,8 @@ public class TestDb {
         Transaction tx = session.getTransaction();
         tx.begin();
         Event event = new Event();
-        event.setAddress("Nairobi");
-        event.setApproved(true);
+        event.setLocation("Nairobi");
+
 
         for (int idx = 0; idx<10; idx++) {
             Attendee attendee = new Attendee();
@@ -53,7 +66,7 @@ public class TestDb {
             attendee.setEvent(event);
             attendee.getAttendee().setName("Bill");
             attendee.getAttendee().setEmail("bill@email.com");
-            attendee.getAttendee().setPhoneNumber(700000009);
+            attendee.getAttendee().setPhoneNumber("0700000009");
             attendee.setRSVP(true);
             event.addAttendee(attendee);
         }
