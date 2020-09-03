@@ -1,4 +1,4 @@
-package openevents.actions.events;
+package openevents.controllers.events;
 
 import java.io.IOException;
 
@@ -12,10 +12,10 @@ import java.util.Date;
 import org.hibernate.*;
 
 import database.HibernateHelper;
-import openevents.Event;
+import openevents.beans.EventBean;
 
 @WebServlet(urlPatterns = { "/create-event" })
-public class EventAction extends HttpServlet {
+public class EventController extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -33,7 +33,7 @@ public class EventAction extends HttpServlet {
         Transaction tx = session.getTransaction();
         try {
             tx.begin();
-            Event event = new Event();
+            EventBean event = new EventBean();
             event.setLocation(location);
             event.setOrganizerName(organizer);
             event.setEventType(type);

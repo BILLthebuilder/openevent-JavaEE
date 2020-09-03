@@ -1,4 +1,4 @@
-package openevents;
+package openevents.beans;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -11,7 +11,7 @@ import java.util.*;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "events")
-public class Event {
+public class EventBean {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,13 +48,13 @@ public class Event {
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Organizer organizer;
+    private OrganizerBean organizer;
 
     @OneToMany(mappedBy = "event",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Attendee> attendees = new ArrayList<>();
+    private List<AttendeeBean> attendees = new ArrayList<>();
 
     @ManyToMany(mappedBy = "events",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Attendee> allAtendees = new HashSet<>();
+    private Set<AttendeeBean> allAtendees = new HashSet<>();
 
     public int getId() {
         return id;
@@ -128,31 +128,31 @@ public class Event {
         this.eventCategory = eventCategory;
     }
 
-    public Organizer getOrganizer() {
+    public OrganizerBean getOrganizer() {
         return organizer;
     }
 
-    public void setOrganizer(Organizer organizer) {
+    public void setOrganizer(OrganizerBean organizer) {
         this.organizer = organizer;
     }
 
-    public List<Attendee> getAttendees() {
+    public List<AttendeeBean> getAttendees() {
         return attendees;
     }
 
-    public void setAttendees(List<Attendee> attendees) {
+    public void setAttendees(List<AttendeeBean> attendees) {
         this.attendees = attendees;
     }
 
-    public Set<Attendee> getAllAtendees() {
+    public Set<AttendeeBean> getAllAtendees() {
         return allAtendees;
     }
 
-    public void setAllAtendees(Set<Attendee> allAtendees) {
+    public void setAllAtendees(Set<AttendeeBean> allAtendees) {
         this.allAtendees = allAtendees;
     }
 
-    public void addAttendee(Attendee attendee){
+    public void addAttendee(AttendeeBean attendee){
         attendee.setEvent(this);
        this.attendees.add(attendee);
     }

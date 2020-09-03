@@ -1,4 +1,4 @@
-package openevents;
+package openevents.beans;
 
 import openevents.utils.BaseUserEntity;
 import openevents.utils.Person;
@@ -14,7 +14,7 @@ import java.util.Set;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "attendees")
-public class Attendee extends BaseUserEntity {
+public class AttendeeBean extends BaseUserEntity {
     @Embedded
     Person attendee;
 
@@ -22,7 +22,7 @@ public class Attendee extends BaseUserEntity {
     private Boolean RSVP;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Event event;
+    private EventBean event;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
@@ -30,7 +30,7 @@ public class Attendee extends BaseUserEntity {
             joinColumns = { @JoinColumn(name = "attendee_id") },
             inverseJoinColumns = { @JoinColumn(name = "event_id") }
     )
-    private Set<Event> events = new HashSet<>();
+    private Set<EventBean> events = new HashSet<>();
 
     public Person getAttendee() {
         return attendee;
@@ -47,11 +47,11 @@ public class Attendee extends BaseUserEntity {
     public void setRSVP(Boolean RSVP) {
         this.RSVP = RSVP;
     }
-    public Event getEvent() {
+    public EventBean getEvent() {
         return event;
     }
 
-    public void setEvent(Event event) {
+    public void setEvent(EventBean event) {
         this.event = event;
     }
 

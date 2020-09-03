@@ -1,8 +1,8 @@
 package database;
-import openevents.Admin;
-import openevents.Attendee;
-import openevents.Event;
-import openevents.Organizer;
+import openevents.beans.AdminBean;
+import openevents.beans.AttendeeBean;
+import openevents.beans.EventBean;
+import openevents.beans.OrganizerBean;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -33,10 +33,10 @@ public class HibernateHelper {
 
         configuration.setProperties(properties);
 
-        configuration.addAnnotatedClass(Admin.class);
-        configuration.addAnnotatedClass(Attendee.class);
-        configuration.addAnnotatedClass(Event.class);
-        configuration.addAnnotatedClass(Organizer.class);
+        configuration.addAnnotatedClass(AdminBean.class);
+        configuration.addAnnotatedClass(AttendeeBean.class);
+        configuration.addAnnotatedClass(EventBean.class);
+        configuration.addAnnotatedClass(OrganizerBean.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
