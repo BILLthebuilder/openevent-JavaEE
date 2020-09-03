@@ -1,12 +1,16 @@
 package openevents.utils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class Person {
+
+    @NotNull
     @Column(nullable = false)
     private String name;
 
+    @NotNull
     @Column(nullable = false, unique = true)
     private String email;
 
