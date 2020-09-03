@@ -50,3 +50,7 @@ align-self: center;
     font-weight: bold;
     letter-spacing: .5;
 }
+
+.login-check{
+    align-self: center;
+}
