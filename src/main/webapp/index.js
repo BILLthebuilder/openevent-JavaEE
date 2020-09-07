@@ -43,7 +43,7 @@ var tooltipInstance = M.Tooltip.init(tooltip, {
 })();
 
 //Render event cards
-(function cardRender() {
+function cardRender() {
     fetch('https://jsonplaceholder.typicode.com/posts?_start=0&_limit=10')
         .then(data => data.json())
         .then(posts => {
@@ -68,4 +68,4 @@ var tooltipInstance = M.Tooltip.init(tooltip, {
             renderCards.insertAdjacentHTML('afterbegin', card);
             })
         });
-})();
+}

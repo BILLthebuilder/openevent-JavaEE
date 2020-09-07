@@ -1,4 +1,4 @@
-package openevents.beans;
+package openevents.models;
 
 import openevents.utils.BaseUserEntity;
 import openevents.utils.Person;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "admin")
-public class AdminBean extends BaseUserEntity {
+public class AdminModel extends BaseUserEntity {
 
     @Embedded
     Person admin;

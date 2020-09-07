@@ -54,3 +54,77 @@ align-self: center;
 .login-check{
     align-self: center;
 }
+
+div.error{
+    color: red;
+}
+
+
+
+/*extras*/
+.card-info, .card__meta a {
+    color: #3299BB !important;
+    display: inline-flex;
+    vertical-align: middle;
+    line-height: 2;
+    font-size: 1rem;
+}
+.card__meta i.small {
+    font-size: 1.5rem;
+}
+.card .card-content .card-title {
+    line-height: 34px;
+}
+.card__date {
+    background: #08c;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 13px;
+    font-weight: bold;
+    padding-top: 7px;
+}
+.card__date__day {
+    display: block;
+    font-size: 14px;
+}
+.card__date__month {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.card .card-content .card-title {
+    color: #0D8080 !important;
+    line-height: 18px;
+}
+
+.card .card-title {
+
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.card .card-content p{
+    /* color: #1E1E1E; */
+    font-size: 13px;
+}
+
+.collapsible{
+    background: #fff;
+}
+
+.card-row {
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+.card-action i {
+    vertical-align: text-bottom;
+    font-size: 21px;
+}
+

@@ -1,4 +1,4 @@
-package openevents.beans;
+package openevents.models;
 
 import openevents.utils.BaseUserEntity;
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "users")
-public class UserBean extends BaseUserEntity{
+public class UserModel extends BaseUserEntity{
 
 @NotNull
 @Column(name = "first_name")

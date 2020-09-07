@@ -12,7 +12,7 @@ import java.util.Date;
 import org.hibernate.*;
 
 import database.HibernateHelper;
-import openevents.beans.EventBean;
+import openevents.models.EventModel;
 
 @WebServlet(urlPatterns = { "/create-event" })
 public class EventController extends HttpServlet {
@@ -33,7 +33,7 @@ public class EventController extends HttpServlet {
         Transaction tx = session.getTransaction();
         try {
             tx.begin();
-            EventBean event = new EventBean();
+            EventModel event = new EventModel();
             event.setLocation(location);
             event.setOrganizerName(organizer);
             event.setEventType(type);

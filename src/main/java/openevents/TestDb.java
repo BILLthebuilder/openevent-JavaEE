@@ -1,10 +1,10 @@
 package openevents;
 
 import database.HibernateHelper;
-import openevents.beans.AdminBean;
-import openevents.beans.AttendeeBean;
-import openevents.beans.EventBean;
-import openevents.beans.OrganizerBean;
+import openevents.models.AdminModel;
+import openevents.models.AttendeeModel;
+import openevents.models.EventModel;
+import openevents.models.OrganizerModel;
 import openevents.utils.Person;
 import org.hibernate.*;
 
@@ -26,7 +26,7 @@ public class TestDb {
 
         Transaction tx = session.getTransaction();
         tx.begin();
-       OrganizerBean organizer = new OrganizerBean();
+       OrganizerModel organizer = new OrganizerModel();
         organizer.setOrganizer(new Person());
         organizer.getOrganizer().setName("Bill");
         organizer.getOrganizer().setEmail("bill@email.com");
@@ -34,7 +34,7 @@ public class TestDb {
 
 
         for (int idx = 0; idx<10; idx++) {
-            EventBean event = new EventBean();
+            EventModel event = new EventModel();
             event.setLocation("Nairobi");
             event.setOrganizerName("Bill");
             event.setEventType("Tech Event");
@@ -59,12 +59,12 @@ public class TestDb {
 
         Transaction tx = session.getTransaction();
         tx.begin();
-        EventBean event = new EventBean();
+        EventModel event = new EventModel();
         event.setLocation("Nairobi");
 
 
         for (int idx = 0; idx<10; idx++) {
-            AttendeeBean attendee = new AttendeeBean();
+            AttendeeModel attendee = new AttendeeModel();
             attendee.setAttendee(new Person());
 
             attendee.setEvent(event);
@@ -85,7 +85,7 @@ public class TestDb {
 
        Transaction tx = session.getTransaction();
        tx.begin();
-       AdminBean admin = new AdminBean();
+       AdminModel admin = new AdminModel();
        admin.setAdmin(new Person());
 
        admin.getAdmin().setName("admin");

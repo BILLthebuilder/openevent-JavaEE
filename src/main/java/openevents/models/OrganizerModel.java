@@ -1,4 +1,4 @@
-package openevents.beans;
+package openevents.models;
 import openevents.utils.BaseUserEntity;
 import openevents.utils.Person;
 import org.hibernate.annotations.DynamicInsert;
@@ -12,12 +12,12 @@ import java.util.List;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "organizers")
-public class OrganizerBean extends BaseUserEntity {
+public class OrganizerModel extends BaseUserEntity {
     @Embedded
     Person organizer;
 
     @OneToMany(mappedBy = "organizer",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<EventBean> events = new ArrayList<>();
+    private List<EventModel> events = new ArrayList<>();
 
     public Person getOrganizer() {
         return organizer;
@@ -27,15 +27,15 @@ public class OrganizerBean extends BaseUserEntity {
         this.organizer = organizer;
     }
 
-    public List<EventBean> getEvents() {
+    public List<EventModel> getEvents() {
         return events;
     }
 
-    public void setEvents(List<EventBean> events) {
+    public void setEvents(List<EventModel> events) {
         this.events = events;
     }
 
-    public void addEvent(EventBean event){
+    public void addEvent(EventModel event){
         event.setOrganizer(this);
         this.events.add(event);
     }

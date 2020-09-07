@@ -1,19 +1,20 @@
 package openevents.controllers.users;
 
 import database.HibernateHelper;
-import openevents.beans.UserBean;
+import openevents.models.UserModel;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
 @WebServlet(urlPatterns = {"/register"})
-public class UsersController {
+public class UsersController extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String firstName = request.getParameter("first_name");
@@ -29,7 +30,7 @@ public class UsersController {
         try {
             tx.begin();
 
-            UserBean user = new UserBean();
+            UserModel user = new UserModel();
 
             user.setFirstName(firstName);
             user.setLastName(lastName);
