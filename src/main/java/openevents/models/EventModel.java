@@ -25,6 +25,10 @@ public class EventModel {
     @Column(name = "organizer")
     private String organizerName;
 
+    @NotNull
+    @Column(name = "description")
+    private String eventDescription;
+
     @Column(name = "tags")
     private String eventTags;
 
@@ -70,6 +74,14 @@ public class EventModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String geteventDescription() {
+        return eventDescription;
+    }
+
+    public void seteventDescription(String eventDescription) {
+        this.eventDescription = eventDescription;
     }
 
     public String getOrganizerName() {
