@@ -20,7 +20,7 @@ $(document).ready(function () {
         console.log(formData);
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/openevents/create-event',
+            url: 'http://localhost:8080/openevents/event',
             data: formData,
         })
             .done(function (data) {

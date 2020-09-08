@@ -128,3 +128,12 @@ div.error{
     font-size: 21px;
 }
 
+.card-action a{
+    color: #039be5 !important;
+}
+.card-action a::hover{
+color: #63c9fa !important;
+}
+.event-link-card-container{
+    cursor: pointer;
+}
