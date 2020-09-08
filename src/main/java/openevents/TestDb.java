@@ -37,6 +37,7 @@ public class TestDb {
             EventModel event = new EventModel();
             event.setLocation("Nairobi");
             event.setOrganizerName("Bill");
+            event.seteventDescription("A very awesome tech event for everyone to attend, welcome all");
             event.setEventType("Tech Event");
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String dateInString = "2020-09-07 10:20:00";
