@@ -5,6 +5,10 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.*;
 
 @Entity
@@ -52,12 +56,15 @@ public class EventModel {
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
     private OrganizerModel organizer;
 
-    @OneToMany(mappedBy = "event",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<AttendeeModel> attendees = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "events",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<AttendeeModel> allAtendees = new HashSet<>();
 
     public int getId() {

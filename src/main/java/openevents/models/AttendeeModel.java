@@ -5,8 +5,11 @@ import openevents.utils.Person;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +25,7 @@ public class AttendeeModel extends BaseUserEntity {
     private Boolean RSVP;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference
     private EventModel event;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -30,6 +34,7 @@ public class AttendeeModel extends BaseUserEntity {
             joinColumns = { @JoinColumn(name = "attendee_id") },
             inverseJoinColumns = { @JoinColumn(name = "event_id") }
     )
+    @JsonManagedReference
     private Set<EventModel> events = new HashSet<>();
 
     public Person getAttendee() {

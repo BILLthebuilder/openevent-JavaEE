@@ -1,10 +1,14 @@
 package openevents.models;
+
 import openevents.utils.BaseUserEntity;
 import openevents.utils.Person;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +20,8 @@ public class OrganizerModel extends BaseUserEntity {
     @Embedded
     Person organizer;
 
-    @OneToMany(mappedBy = "organizer",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "organizer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<EventModel> events = new ArrayList<>();
 
     public Person getOrganizer() {
