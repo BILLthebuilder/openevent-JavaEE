@@ -6,15 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.*;
 
 import database.HibernateHelper;
 import openevents.models.EventModel;
 
-@WebServlet(urlPatterns = { "/create-event" })
+@WebServlet(urlPatterns = { "event" })
 public class EventController extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -37,6 +41,7 @@ public class EventController extends HttpServlet {
             event.setLocation(location);
             event.setOrganizerName(organizer);
             event.setEventType(type);
+            //example date: 2012-01-31 23:59:59
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             String startDateInString = startDate;
             String endDateInString = endDate;
@@ -57,21 +62,22 @@ public class EventController extends HttpServlet {
 
     }
 
-    // public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //     Session session = HibernateHelper.getSessionFactory().getCurrentSession();
-    //     Transaction tx = session.getTransaction();
-    //     try {
-    //         tx.begin();
-    //         // List<TransactionClass>event = session.createQuery("From TransactionClass r").getResultList();
-    //         // ObjectMapper json = new ObjectMapper();
-    //         //response.getWriter().println(json.writeValueAsString(transactions));
-    //         tx.commit();
-    //     } catch (Exception e) {
-    //         // TODO: handle exception properly
-    //         response.getWriter().println("An error has occurred");
-    //         e.printStackTrace();
-    //     }
-    // }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Session session = HibernateHelper.getSessionFactory().getCurrentSession();
+        Transaction tx = session.getTransaction();
+        try {
+            tx.begin();
+            List<EventModel> events = session.createQuery("From EventModel e").getResultList();
+            ObjectMapper json = new ObjectMapper();
+            String fetchedEvents = json.writerWithDefaultPrettyPrinter().writeValueAsString(events);
+            response.getWriter().println(fetchedEvents);
+            tx.commit();
+        } catch (Exception e) {
+            // TODO: handle exception properly
+            response.getWriter().println("An error has occurred");
+            e.printStackTrace();
+        }
+    }
 
     // public void doDelete(HttpServletRequest request, HttpServletResponse response)
     //         throws ServletException, IOException {
