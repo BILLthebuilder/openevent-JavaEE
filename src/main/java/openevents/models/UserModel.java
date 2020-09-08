@@ -22,7 +22,7 @@ private String firstName;
 private String lastName;
 
 @NotNull
-@Column(name ="email", unique = true, nullable = false)
+@Column(nullable = false, columnDefinition = "UNIQUE")
 private String email;
 
 @NotNull

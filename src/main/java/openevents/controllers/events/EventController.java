@@ -18,13 +18,14 @@ import org.hibernate.*;
 import database.HibernateHelper;
 import openevents.models.EventModel;
 
-@WebServlet(urlPatterns = { "event" })
+@WebServlet(urlPatterns = { "/event" })
 public class EventController extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String tittle = request.getParameter("event_title");
         String organizer = request.getParameter("event_organizer");
+        String description = request.getParameter("event_description");
         String tags = request.getParameter("event_tags");
         String type = request.getParameter("event_type");
         String category = request.getParameter("event_category");
@@ -40,6 +41,7 @@ public class EventController extends HttpServlet {
             EventModel event = new EventModel();
             event.setLocation(location);
             event.setOrganizerName(organizer);
+            event.seteventDescription(description);
             event.setEventType(type);
             //example date: 2012-01-31 23:59:59
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
