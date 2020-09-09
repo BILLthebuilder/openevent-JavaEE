@@ -60,7 +60,12 @@
       <version>1.7.30</version>
       <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
+      <dependency>
+          <groupId>commons-beanutils</groupId>
+          <artifactId>commons-beanutils</artifactId>
+          <version>1.9.4</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
 <!--    <dependency>-->
 <!--      <groupId>com.vladmihalcea</groupId>-->
 <!--      <artifactId>hibernate-types-52</artifactId>-->

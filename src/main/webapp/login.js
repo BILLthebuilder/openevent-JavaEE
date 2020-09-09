@@ -7,22 +7,9 @@ const sideNavInstance = M.Sidenav.init(sidenav, {});
 
 $("#form").validate({
     rules: {
-        first_name: {
-            required: true,
-            minlength: 2
-        },
-        last_name: {
-            required: true,
-            minlength: 2
-        },
         user_email: {
             required: true,
             email:true
-        },
-        repeat_email: {
-            required: true,
-            email:true,
-            equalTo: "#user_email"
         },
         password: {
             required: true,
@@ -40,9 +27,9 @@ $("#form").validate({
         //     required: "Enter a username",
         //     minlength: "Enter at least 5 characters"
         // },
-        repeat_email:{
-            equalTo: "email addresses don't match. try again"
-        },
+        // repeat_email:{
+        //     equalTo: "email addresses don't match. try again"
+        // },
         repeat_password:{
             equalTo: "passwords don't match. try again"
         }
@@ -62,26 +49,21 @@ $("#form").validate({
 $(document).ready(function () {
     $('form').submit(function (event) {
         const formData = {
-            'first_name': $('input[name=first_name]').val(),
-            'last_name': $('input[name=last_name]').val(),
-            'repeat_email': $('input[name=repeat_email]').val(),
+            'user_email': $('input[name=user_email]').val(),
             'repeat_password': $('input[name=repeat_password]').val()
         };
         console.log(formData);
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/openevents/register',
+            url: 'http://localhost:8080/openevents/login',
             data: formData,
         })
             .done(function (data) {
-                $('input[name=first_name]').val('');
-                $('input[name=last_name]').val('');
                 $('input[name=user_email]').val('');
-                $('input[name=repeat_email]').val('');
                 $('input[name=password]').val('');
                 $('input[name=repeat_password]').val('');
-                window.location.href = './login.html';
-                //console.log(data);
+                //window.location.href = './login.html';
+                console.log(data);
             });
         event.preventDefault();
     });

@@ -40,11 +40,11 @@ public class EventModel {
     @Column
     private String location;
 
-    @NotNull
+
     @Column(name = "start_date", columnDefinition = "DATETIME")
     private Date eventStartDateAndTime;
 
-    @NotNull
+
     @Column(name = "end_date", columnDefinition = "DATETIME")
     private Date eventEndDateAndTime;
 

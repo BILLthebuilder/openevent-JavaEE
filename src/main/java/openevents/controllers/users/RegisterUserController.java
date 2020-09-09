@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = {"/register"})
-public class UsersController extends HttpServlet {
+public class RegisterUserController extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String firstName = request.getParameter("first_name");

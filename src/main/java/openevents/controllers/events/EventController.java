@@ -1,6 +1,7 @@
 package openevents.controllers.events;
 
 import java.io.IOException;
+import org.apache.commons.beanutils.BeanUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +24,7 @@ public class EventController extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+
         String tittle = request.getParameter("event_title");
         String organizer = request.getParameter("event_organizer");
         String description = request.getParameter("event_description");
@@ -39,6 +41,7 @@ public class EventController extends HttpServlet {
         try {
             tx.begin();
             EventModel event = new EventModel();
+            BeanUtils.populate(event, request.getParameterMap());
             event.setLocation(location);
             event.setOrganizerName(organizer);
             event.seteventDescription(description);
@@ -55,7 +58,10 @@ public class EventController extends HttpServlet {
             event.setEventTags(tags);
             event.setTitle(tittle);
             session.save(event);
-            response.getWriter().println("Data saved successfully!!");
+//            System.out.println("-----------DATA------------");
+//            System.out.println(request.getParameterMap());
+//            System.out.println("-----------DATA------------");
+//            response.getWriter().println("Data saved successfully!!");
             tx.commit();
         } catch (Exception e) {
             response.getWriter().println("An error has occurred");
