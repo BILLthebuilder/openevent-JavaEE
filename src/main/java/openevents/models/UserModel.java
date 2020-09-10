@@ -11,27 +11,27 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "users")//uniqueConstraints = @UniqueConstraint(columnNames = {"email","first_name"}))
-@NamedQueries({
-        @NamedQuery(name = UserModel.USER_FIND_BY_EMAIL_PWD, query = "SELECT u FROM UserModel u WHERE u.email=:email")
-})
+// @NamedQueries({
+//         @NamedQuery(name = UserModel.USER_FIND_BY_EMAIL_PWD, query = "SELECT u FROM UserModel u WHERE u.email=:email")
+// })
 public class UserModel extends BaseUserEntity{
 
-    @Transient
-    public static final String USER_FIND_BY_EMAIL_PWD = "UserModel.findByEmailPwd";
+    // @Transient
+    // public static final String USER_FIND_BY_EMAIL_PWD = "UserModel.findByEmailPwd";
 
-//@NotNull
+@NotNull
 @Column(name = "first_name")
 private String firstName;
 
-//@NotNull
+@NotNull
 @Column(name = "last_name")
 private String lastName;
 
-//@NotNull
+@NotNull
 @Column()
 private String email;
 
-//@NotNull
+@NotNull
 @Column(name = "password")
 private String password;
 

@@ -3,7 +3,6 @@ package openevents.controllers.users;
 import database.HibernateHelper;
 import openevents.models.UserModel;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.annotation.WebServlet;
@@ -21,14 +20,16 @@ public class LoginUserController extends HttpServlet {
     public boolean authenticate(String email , String password){
         Session session = HibernateHelper.getSessionFactory().openSession();
         UserModel user = null;
-        user = (UserModel) session.createQuery(UserModel.USER_FIND_BY_EMAIL_PWD)
-                .setParameter("email", email);
-                //.setParameter("pwd", user.getPassword());
+        user = (UserModel) session.createQuery("SELECT u FROM UserModel u WHERE u.email=:email")
+                .setParameter("email", email).uniqueResult();
+                //.setParameter("pwd", password);
 
-        if(user != null && user.getPassword().equals(BCrypt.checkpw(password,user.getPassword()))){
+        if (user != null && BCrypt.checkpw(password, user.getPassword())) {
+            System.out.println("login successful");
             return true;
         }else{
             //throw new Exception("Invalid user details");
+            System.out.println("invalid user details");
             return false;
         }
 
@@ -51,10 +52,11 @@ public class LoginUserController extends HttpServlet {
             } else response.getWriter().println("authentication_failed");
 
 
-            response.getWriter().println("Registration is successful!!");
+            //response.getWriter().println("Registration is successful!!");
 
         } catch (Exception e) {
-            response.getWriter().println("An error has occurred");
+            //response.getWriter().println("An error has occurred");
+            response.getWriter().println(e.getMessage());
             e.printStackTrace();
         }
 
