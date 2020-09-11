@@ -1,11 +1,10 @@
 package openevents.controllers.users;
 
-import database.HibernateHelper;
+import openevents.ejb.users.UserBean;
 import openevents.models.UserModel;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.ejb.EJB;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +14,9 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/register"})
 public class RegisterUserController extends HttpServlet {
+    @EJB
+    private UserBean userBean;
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         String firstName = request.getParameter("first_name");
@@ -24,22 +26,14 @@ public class RegisterUserController extends HttpServlet {
 
         String password = BCrypt.hashpw(plainPassword, BCrypt.gensalt());
 
-
-        Session session = HibernateHelper.getSessionFactory().getCurrentSession();
-        Transaction tx = session.getTransaction();
         try {
-            tx.begin();
-
             UserModel user = new UserModel();
-
             user.setFirstName(firstName);
             user.setLastName(lastName);
             user.setEmail(email);
             user.setPassword(password);
-            session.save(user);
-
+            userBean.registerUser(user);
             response.getWriter().println("Registration is successful!!");
-            tx.commit();
         } catch (Exception e) {
             response.getWriter().println("An error has occurred");
             e.printStackTrace();
