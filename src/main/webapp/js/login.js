@@ -52,18 +52,24 @@ $(document).ready(function () {
             'user_email': $('input[name=user_email]').val(),
             'repeat_password': $('input[name=repeat_password]').val()
         };
-        console.log(formData);
+        //console.log(formData);
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/openevents/login',
             data: formData,
         })
             .done(function (data) {
-                $('input[name=user_email]').val('');
-                $('input[name=password]').val('');
-                $('input[name=repeat_password]').val('');
-                //window.location.href = './login.html';
-                console.log(data);
+                 if(JSON.parse(data).authenticated){
+                    $('input[name=user_email]').val('');
+                    $('input[name=password]').val('');
+                    $('input[name=repeat_password]').val('');
+                     toastr.success(JSON.parse(data).Message,'Success');
+                    //window.location.href = '';
+                    //console.log(data);
+                 }else {
+                    toastr.error(JSON.parse(data).Message,'Error');
+                }
+
             });
         event.preventDefault();
     });
