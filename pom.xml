@@ -72,6 +72,11 @@
           <artifactId>commons-beanutils</artifactId>
           <version>1.9.4</version>
       </dependency>
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>3.7</version>
+      </dependency>
       <!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
 <!--    <dependency>-->
 <!--      <groupId>com.vladmihalcea</groupId>-->
