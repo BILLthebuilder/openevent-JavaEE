@@ -2,6 +2,7 @@ package openevents.models;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -27,6 +28,7 @@ public class EventModel {
 
     @NotNull
     @Column(name = "organizer")
+    @Formula("(SELECT id FROM organizers o where o.id=?)")
     private String organizerName;
 
     @NotNull
