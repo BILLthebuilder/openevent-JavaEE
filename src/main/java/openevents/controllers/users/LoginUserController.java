@@ -7,6 +7,7 @@ import openevents.models.UserModel;
 
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,9 @@ public class LoginUserController extends HttpServlet {
 
     @EJB
     private UserBean userBean;
+
+//    @Inject
+//    private UserModel user;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws NullPointerException, IOException {
         ObjectMapper mapper = new ObjectMapper();

@@ -34,12 +34,8 @@ $("#form").validate({
             equalTo: "#password"
         }
     },
-    //For custom messages
+    //Custom validation messages
     messages: {
-        // first_name:{
-        //     required: "Enter a username",
-        //     minlength: "Enter at least 5 characters"
-        // },
         repeat_email:{
             equalTo: "email addresses don't match. try again"
         },
@@ -61,26 +57,15 @@ $("#form").validate({
 
 $(document).ready(function () {
     $('form').submit(function (event) {
-        const formData = {
-            'first_name': $('input[name=first_name]').val(),
-            'last_name': $('input[name=last_name]').val(),
-            'repeat_email': $('input[name=repeat_email]').val(),
-            'repeat_password': $('input[name=repeat_password]').val()
-        };
-        console.log(formData);
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/openevents/register',
-            data: formData,
+            data: $('form').serialize(),
         })
             .done(function (data) {
-                $('input[name=first_name]').val('');
-                $('input[name=last_name]').val('');
-                $('input[name=user_email]').val('');
-                $('input[name=repeat_email]').val('');
-                $('input[name=password]').val('');
-                $('input[name=repeat_password]').val('');
+                $('input[type=text],input[type=password],input[type=email],textarea').val('');
                 window.location.href = './login.html';
+                toastr.success(data,'Success');
                 //console.log(data);
             });
         event.preventDefault();

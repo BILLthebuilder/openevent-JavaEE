@@ -24,11 +24,11 @@ public class EventModel {
 
     @NotNull
     @Column
-    private String title;
+    private String eventTitle;
 
-    @NotNull
+    //@NotNull
     @Column(name = "organizer")
-    @Formula("(SELECT id FROM organizers o where o.id=?)")
+    //@Formula("(SELECT id FROM organizers o where o.id=?)")
     private String organizerName;
 
     @NotNull
@@ -39,15 +39,15 @@ public class EventModel {
     private String eventTags;
 
     @NotNull
-    @Column
-    private String location;
+    @Column(name = "location")
+    private String eventLocation;
 
 
-    @Column(name = "start_date", columnDefinition = "DATETIME")
+    @Column(name = "start_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date eventStartDateAndTime;
 
 
-    @Column(name = "end_date", columnDefinition = "DATETIME")
+    @Column(name = "end_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date eventEndDateAndTime;
 
     @Column(name = "type")
@@ -77,12 +77,12 @@ public class EventModel {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getEventTitle() {
+        return eventTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setEventTitle(String title) {
+        this.eventTitle = title;
     }
 
     public String geteventDescription() {
@@ -109,12 +109,12 @@ public class EventModel {
         this.eventTags = eventTags;
     }
 
-    public String getLocation() {
-        return location;
+    public String getEventLocation() {
+        return eventLocation;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setEventLocation(String eventLocation) {
+        this.eventLocation = eventLocation;
     }
 
     public Date getEventStartDateAndTime() {
