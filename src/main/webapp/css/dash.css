@@ -1,5 +1,5 @@
 header, main, footer, nav{
-      padding-left: 300px;
+      padding-left: 400px;
     }
 
     @media only screen and (max-width : 992px) {
@@ -11,3 +11,6 @@ header, main, footer, nav{
   color: #a0daf6;
 }
 
+form{
+  height: 100%;
+}

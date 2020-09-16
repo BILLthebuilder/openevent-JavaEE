@@ -5,6 +5,7 @@ import openevents.models.UserModel;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import java.io.IOException;
 public class RegisterUserController extends HttpServlet {
     @EJB
     private UserBean userBean;
+//    @Inject
+//    private  UserModel user;
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 

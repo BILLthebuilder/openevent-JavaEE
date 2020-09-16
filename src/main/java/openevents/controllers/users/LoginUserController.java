@@ -8,6 +8,8 @@ import openevents.models.UserModel;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -51,11 +53,10 @@ public class LoginUserController extends HttpServlet {
 
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         String loggedInMessage = "";
         boolean isLoggedIn = true;
-        //UserModel user = new UserModel();
         String email = request.getParameter("user_email");
         String plainPassword = request.getParameter("repeat_password");
 
@@ -69,7 +70,6 @@ public class LoginUserController extends HttpServlet {
                 loggedInMessage= "Successful Login";
 
         } catch (Exception ex) {
-            //writer.println(ex.getMessage());
             isLoggedIn = false;
             loggedInMessage = ex.getMessage();
             ex.printStackTrace();
@@ -83,7 +83,7 @@ public class LoginUserController extends HttpServlet {
             }
             json.put("Message",loggedInMessage);
             String data = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
-            response.getWriter().println(data);
+            writer.println(data);
         }
 
     }

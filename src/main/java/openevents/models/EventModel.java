@@ -61,11 +61,11 @@ public class EventModel {
     @JsonBackReference
     private OrganizerModel organizer;
 
-    @OneToMany(mappedBy = "event", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<AttendeeModel> attendees = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "events", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private Set<AttendeeModel> allAtendees = new HashSet<>();
 

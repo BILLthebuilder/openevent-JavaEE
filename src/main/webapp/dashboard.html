@@ -100,7 +100,141 @@
             </li>
         </ul>
     </ul>
+    
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <main>
+        <table class="responsive striped">
+            <thead>
+                <div class="row center-align">
+                    <a class="btn-large waves-effect waves-light blue modal-trigger" href="#form"><i
+                            class="material-icons left">add</i>create event</a>
+                </div>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Orangizer Name</th>
+                    <th>Description</th>
+                    <th>Tags</th>
+                    <th>Location</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Title</td>
+                    <td>Organizer</td>
+                    <td>Description</td>
+                    <td>Tag</td>
+                    <td>Location</td>
+                    <td>Start</td>
+                    <td>End</td>
+                    <td>
+                        <div class="row">
+                            <a class="btn-floating btn-small waves-effect waves-light blue"><i
+                                    class="material-icons left">edit</i>edit</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <a class="btn-floating btn-small waves-effect waves-light red"><i
+                                    class="material-icons left">delete</i>delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main> 
+    <form id="form" class="col s12 modal">
+        <div class="inputs-row">
+            <div class="intro-row">
+                <h2>Create Event</h2>
+                <p>Name your event and tell event-goers why they should come. Add details that highlight what makes it
+                    unique.</p>
+            </div>
+    
+            <input type="hidden">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">list_alt</i>
+                <input required="" aria-required="true" id="eventTitle" type="text" class="validate" name="eventTitle"
+                    placeholder="Event Title">
+                <label for="eventTitle">Event Title</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">person</i>
+                <input required="" aria-required="true" id="eventOrganizer" type="text" class="validate"
+                    name="eventOrganizer" placeholder="Event Organizer">
+                <label for="eventOrganizer">Event Organizer</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">description</i>
+                <textarea required="" aria-required="true" id="eventDescription" type="text"
+                    class="validate materialize-textarea" data-length="254" name="eventDescription"
+                    placeholder="Tell us what your event is about"></textarea>
+                <label for="eventDescription">Event Description</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">note</i>
+                <input required="" aria-required="true" id="eventTags" type="text" class="validate" name="eventTags"
+                    placeholder="Add some tags to make your event stand out">
+                <label for="eventTags">Event Tags</label>
+            </div>
+            <!-- TODO:make this as select -->
+            <div class="input-field col s6">
+                <i class="material-icons prefix">description</i>
+                <input required="" aria-required="true" id="eventType" type="text" class="validate" name="eventType"
+                    placeholder="Choose an event type">
+                <label for="eventType">Event Type</label>
+            </div>
+            <!-- TODO:make this as select -->
+            <div class="input-field col s6">
+                <i class="material-icons prefix">category</i>
+                <input required="" aria-required="true" id="eventCategory" type="text" class="validate" name="eventCategory"
+                    placeholder="Choose an event category">
+                <label for="eventCategory">Event Category</label>
+            </div>
+        </div>
+        <div class="inputs-row">
+            <div class="intro-row">
+                <h2>Location</h2>
+                <p>Help people in the area discover your event and let attendees know where to show up.</p>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">location_on</i>
+                <input required="" aria-required="true" id="eventLocation" type="text" class="validate" name="eventLocation"
+                    placeholder="Choose a location for your event">
+                <label for="eventLocation">Event Location</label>
+            </div>
+        </div>
+        <div class="inputs-row">
+            <div class="intro-row">
+                <h2>Date and time</h2>
+                <p>Tell event-goers when your event starts and ends so they can make plans to attend.</p>
+            </div>
+    
+            <!-- TODO:make this as a date picker -->
+            <div class="input-field col s6">
+                <i class="material-icons prefix">date_range</i>
+                <input required="" aria-required="true" id="eventStartDate" type="text" class="validate"
+                    name="eventStartDate" placeholder="Enter a start date for your event">
+                <label for="eventStartDate">Event Start Date</label>
+            </div>
+            <!-- TODO:make this as a date picker -->
+            <div class="input-field col s6">
+                <i class="material-icons prefix">date_range</i>
+                <input required="" aria-required="true" id="eventEndDate" type="text" class="validate" name="eventEndDate"
+                    placeholder="Enter a date when you conclude your event">
+                <label for="eventEndDate">Event End Date</label>
+            </div>
+        </div>
+        <div class="form-btn">
+            <button class="btn waves-effect blue darken-2 waves-light" type="submit" name="action">CREATE EVENT
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
     <div class="sticky"></div>
    <footer class="page-footer blue darken-2"></footer>
    <script class="includes" src="includes.js"></script>

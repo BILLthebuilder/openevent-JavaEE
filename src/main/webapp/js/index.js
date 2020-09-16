@@ -48,7 +48,7 @@ const eventTags = [
         .then(response => response.json())
         .then(events => {
             events.forEach(event => {
-                const eventTitle = event.title;
+                const eventTitle = event.eventTitle;
                 const eventContent = event.eventDescription;
                 const fetchedEventTags = event.eventTags.split('-');
                 //console.log(fetchedEventTags);

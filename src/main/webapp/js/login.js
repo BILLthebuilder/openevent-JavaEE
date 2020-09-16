@@ -48,30 +48,33 @@ $("#form").validate({
 
 $(document).ready(function () {
     $('form').submit(function (event) {
+        event.preventDefault();
         const formData = {
             'user_email': $('input[name=user_email]').val(),
             'repeat_password': $('input[name=repeat_password]').val()
         };
-        //console.log(formData);
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/openevents/login',
             data: formData,
-        })
-            .done(function (data) {
-                 if(JSON.parse(data).authenticated){
+            dataType:'json',
+            success:function (data) {
+                if(data.authenticated){
                     $('input[name=user_email]').val('');
                     $('input[name=password]').val('');
                     $('input[name=repeat_password]').val('');
-                     toastr.success(JSON.parse(data).Message,'Success');
-                    window.location.href = './create.html';
-                    //console.log(data);
-                 }else {
-                    toastr.error(JSON.parse(data).Message,'Error');
+                    console.log(data);
+                    toastr.success(data.Message,'Success:');
+                    window.location.replace('create.html');
+                }else {
+                    toastr.error(JSON.parse(data).Message,'Error:');
                 }
 
-            });
-        event.preventDefault();
+            },
+            error: function(data){
+                toastr.error('Request failed','Fatal:')
+            }
+        })
     });
 
 });

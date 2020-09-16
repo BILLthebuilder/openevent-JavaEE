@@ -20,7 +20,7 @@
             <property name="cache.use_minimal_puts" value="false" />
 
             <!-- Print SQL to stdout. -->
-            <property name="show_sql" value="false" />
+            <property name="show_sql" value="true" />
             <property name="format_sql" value="false" />
 
             <!-- update schema on SessionFactory build -->
