@@ -5,6 +5,11 @@ M.AutoInit();
 const sidenav = document.querySelector('.sidenav');
 const sideNavInstance = M.Sidenav.init(sidenav, {});
 
+const toastrOptions = {
+    "closeButton": true,
+    "progressBar": true,
+}
+
 $("#form").validate({
     rules: {
         user_email: {
@@ -64,10 +69,10 @@ $(document).ready(function () {
                     $('input[name=password]').val('');
                     $('input[name=repeat_password]').val('');
                     console.log(data);
-                    toastr.success(data.Message,'Success:');
+                    toastr.success(data.Message,'Success:',toastrOptions);
                     window.location.replace('dashboard.html');
                 }else {
-                    toastr.error(JSON.parse(data).Message,'Error:');
+                    toastr.error(data.Message, 'Error:', toastrOptions);
                 }
 
             },

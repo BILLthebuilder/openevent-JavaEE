@@ -9,7 +9,7 @@ const modal = document.querySelector('.modal');
 const modalInstance = M.Sidenav.init(modal, {});
 
 // Check if a user session exists
-(function checkForUserSession(){
+function checkForUserSession() {
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/openevents/login',
@@ -20,34 +20,44 @@ const modalInstance = M.Sidenav.init(modal, {});
                 window.location.replace('http://localhost:8080/openevents/login.html');
         },
         error: function (data) {
-            toastr.error('Request not sent','Fatal:')
+            toastr.error('Request not sent', 'Fatal:')
         }
     });
-})()
+};
+
 
 $(document).ready(function () {
     $('form').submit(function (event) {
+        event.preventDefault();
         $.ajax({
             type: 'POST',
             url: 'http://localhost:8080/openevents/event',
             data: $('form').serialize(),
-        })
-            .done(function (data) {
+            success: function (data) {
                 $('input[type=text],input[type=password],input[type=email],textarea').val('');
-                modalInstance.close();
+                //modalInstance.close();
                 toastr.success(data, 'Success');
-                //window.location.href
-               // console.log(data);
-            });
-        event.preventDefault();
+                reload();
+            },
+            error: function (data) {
+                toastr.error('An Error has occurred', 'Fatal');
+            }
+        })
     });
-
 });
 
-(function rowRender() {
+rowRender();
+
+function reload() {
+    const container = document.querySelector('tbody');
+    container.innerHTML = '';
+    rowRender();
+}
+
+function rowRender() {
     fetch('http://localhost:8080/openevents/event')
         .then(response => response.json())
-        .then(events => {
+        .then(function (events) {
             console.log(events);
             events.forEach(event => {
                 const id = event.id;
@@ -60,7 +70,7 @@ $(document).ready(function () {
                 const eventEnd = event.eventEnd;
                 const renderEvents = document.querySelector('tbody');
                 const row = `
-                             <tr class="each-row">
+                             <tr class="event-${id}">
                                     <td>${id}</td>
                                     <td>${eventTitle}</td>
                                     <td>${eventOrganizer}</td>
@@ -85,14 +95,18 @@ $(document).ready(function () {
             })
         })
         .catch((error) => console.error(error));
-})();
+};
 
-function deleteEvent(obj){
+function deleteEvent(obj) {
     const id = obj.getAttribute("data-id");
 
-    fetch(`http://localhost:8080/openevents/fetchevent?id=${id}`,{
+    fetch(`http://localhost:8080/openevents/fetchevent?id=${id}`, {
         method: 'DELETE'
-    }).then(data=> toastr.success(`Item with id ${id} has been deleted`))
-    .catch( error => toastr.error('An error has occurred','Fatal:'))
+    }).then(data => {
+        toastr.success(`Item with id ${id} has been deleted`);
+        document.querySelector(`.event-${id}`).remove();
+    }
+    )
+        .catch(error => toastr.error('An error has occurred', 'Fatal:'))
 
 }

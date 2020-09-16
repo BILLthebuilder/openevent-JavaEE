@@ -58,8 +58,12 @@ public class EventModel {
 
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="organizer_id")
     @JsonBackReference
     private OrganizerModel organizer;
+
+//    @Formula("organizer_id")
+//    private int organizerId;
 
     @OneToMany(mappedBy = "event", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -172,6 +176,14 @@ public class EventModel {
     public void setAllAtendees(Set<AttendeeModel> allAtendees) {
         this.allAtendees = allAtendees;
     }
+
+//    public int getOrganizerId() {
+//        return organizerId;
+//    }
+//
+//    public void setOrganizerId(int organizerId) {
+//        this.organizerId = organizerId;
+//    }
 
     public void addAttendee(AttendeeModel attendee){
         attendee.setEvent(this);

@@ -6,6 +6,7 @@ import openevents.ejb.events.EventBean;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 
@@ -24,28 +26,35 @@ public class EventController extends HttpServlet {
     @EJB
     private EventBean eventBean;
 
+    @Inject
+    EventModel event;
+
+    PrintWriter writer;
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        writer = response.getWriter();
 
         try {
-            EventModel event = new EventModel();
             BeanUtils.populate(event, request.getParameterMap());
-            eventBean.createEvent(event);
+            String id = request.getParameter("id");
+            eventBean.createEvent(event,Integer.parseInt(id));
+            writer.println("Event Created Successfully");
         } catch (Exception e) {
-            response.getWriter().println("An error has occurred");
+            writer.println("An error has occurred");
             e.printStackTrace();
         }
 
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        writer = response.getWriter();
         try {
             List<EventModel> events = eventBean.getAllEvents();
             ObjectMapper json = new ObjectMapper();
             String fetchedEvents = json.writerWithDefaultPrettyPrinter().writeValueAsString(events);
-            response.getWriter().println(fetchedEvents);
+            writer.println(fetchedEvents);
         } catch (Exception e) {
-            // TODO: handle exception properly
-            response.getWriter().println("An error has occurred");
+            writer.println(e.getMessage());
             e.printStackTrace();
         }
     }

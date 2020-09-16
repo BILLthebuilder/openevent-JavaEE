@@ -1,2 +1,2 @@
-mvn clean compile tomcat7:redeploy
+mvn clean compile wildfly:deploy
 
