@@ -65,7 +65,7 @@ $(document).ready(function () {
                     $('input[name=repeat_password]').val('');
                     console.log(data);
                     toastr.success(data.Message,'Success:');
-                    window.location.replace('create.html');
+                    window.location.replace('dashboard.html');
                 }else {
                     toastr.error(JSON.parse(data).Message,'Error:');
                 }

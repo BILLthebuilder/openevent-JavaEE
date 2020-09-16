@@ -8,6 +8,23 @@ const sideNavInstance = M.Sidenav.init(sidenav, {});
 const modal = document.querySelector('.modal');
 const modalInstance = M.Sidenav.init(modal, {});
 
+// Check if a user session exists
+(function checkForUserSession(){
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/openevents/login',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+            if (!data.isLoggedIn)
+                window.location.replace('http://localhost:8080/openevents/login.html');
+        },
+        error: function (data) {
+            toastr.error('Request not sent','Fatal:')
+        }
+    });
+})()
+
 $(document).ready(function () {
     $('form').submit(function (event) {
         $.ajax({
