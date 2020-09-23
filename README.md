@@ -1,2 +1,2 @@
 # openevent
-Something awesome
+Something awesome in Java EE
